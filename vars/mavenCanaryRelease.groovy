@@ -12,6 +12,11 @@ def call(body) {
     sh "mvn org.codehaus.mojo:versions-maven-plugin:2.2:set -U -DnewVersion=${config.version}"
     sh "mvn clean -e -U deploy"
 
+    if (flow.hasService("bayesian")) {
+        def bayesianUrl = flow.getServiceURL("bayesian")
+        def response = bayesianAnalysis url: "${bayesianUrl}"
+    }
+
     def s2iMode = flow.isOpenShiftS2I()
     echo "s2i mode: ${s2iMode}"
 
