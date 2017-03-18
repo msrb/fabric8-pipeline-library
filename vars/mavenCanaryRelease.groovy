@@ -24,7 +24,6 @@ def call(body) {
     if (flow.hasService("bayesian-link")) {
         try {
             sh 'mvn io.github.stackinfo:stackinfo-maven-plugin:0.2:prepare'
-            sh 'ping -c 1 bayesian-link'
             bayesianUrl = flow.getServiceURL('bayesian-link') //'http://api-bayesian.dev.rdu2c.fabric8.io/'
             def response = bayesianAnalysis url: bayesianUrl
             if (response.success) {
