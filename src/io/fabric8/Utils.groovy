@@ -211,7 +211,7 @@ def isValidBuildName(buildName){
 def getValidOpenShiftBuildName(){
 
   def jobName = env.JOB_NAME
-  if (jobName.contains('/')){
+  if (jobName.count('/') > 1){
     jobName = jobName.substring(0, jobName.lastIndexOf('/'))
     jobName = jobName.replace('/','.')
   }
