@@ -211,9 +211,11 @@ def isValidBuildName(buildName){
 def getValidOpenShiftBuildName(){
 
   def jobName = env.JOB_NAME
-  if (jobName.count('/') > 1){
-    jobName = jobName.substring(0, jobName.lastIndexOf('/'))
-    jobName = jobName.replace('/','.')
+  if (jobName.contains('/')){
+    if (jobName.substring(0, jobName.lastIndexOf('/')).contains('/')){
+      jobName = jobName.substring(0, jobName.lastIndexOf('/'))
+      jobName = jobName.replace('/','.')
+    }
   }
 
   def buildName = jobName + '-' + env.BUILD_NUMBER
