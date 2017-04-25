@@ -45,7 +45,9 @@ def call(body) {
 
         if (flow.hasService("bayesian-link")) {
             try {
-                sh 'mvn io.github.stackinfo:stackinfo-maven-plugin:0.2:prepare'
+                //sh 'mvn io.github.stackinfo:stackinfo-maven-plugin:0.2:prepare'
+                sh 'mkdir -p target/stackinfo/poms/'
+                sh 'cp pom.xml target/stackinfo/poms/'
                 def response = bayesianAnalysis url: 'https://bayesian-link'
                 if (response.success) {
                     utils.addAnnotationToBuild('fabric8.io/bayesian.analysisUrl', response.getAnalysisUrl())
