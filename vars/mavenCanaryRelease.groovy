@@ -48,7 +48,7 @@ def call(body) {
                 sh 'mvn io.github.stackinfo:stackinfo-maven-plugin:0.2:prepare'
                 def response = bayesianAnalysis url: 'https://bayesian-link'
                 if (response.success) {
-                    utils.addAnnotationToBuild('fabric8.io/bayesian.analysisUrl', response.getAnalysisUrl())
+                    //utils.addAnnotationToBuild('fabric8.io/bayesian.analysisUrl', response.getAnalysisUrl())
                 } else {
                     error "Bayesian analysis failed ${response}"
                 }
