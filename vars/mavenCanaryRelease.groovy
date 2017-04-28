@@ -47,13 +47,6 @@ def call(body) {
             try {
                 sh 'mvn io.github.stackinfo:stackinfo-maven-plugin:0.2:prepare'
                 def response = bayesianAnalysis url: 'https://bayesian-link'
-                def response1 = bayesianAnalysis url: 'https://bayesian-link'
-                def response2 = bayesianAnalysis url: 'https://bayesian-link'
-                def response3 = bayesianAnalysis url: 'https://bayesian-link'
-                def response4 = bayesianAnalysis url: 'https://bayesian-link'
-                def response5 = bayesianAnalysis url: 'https://bayesian-link'
-                def response6 = bayesianAnalysis url: 'https://bayesian-link'
-                def response7 = bayesianAnalysis url: 'https://bayesian-link'
                 if (response.success) {
                     utils.addAnnotationToBuild('fabric8.io/bayesian.analysisUrl', response.getAnalysisUrl())
                 } else {
